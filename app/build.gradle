@@ -36,6 +36,16 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.0.0'
     implementation 'androidx.navigation:navigation-ui-ktx:2.0.0'
 
+    // Koin
+    implementation 'org.koin:koin-android:2.0.1'
+    implementation 'org.koin:koin-android-viewmodel:2.0.1'
+
+    // Retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.6.1'
     implementation 'com.squareup.retrofit2:converter-gson:2.6.1'
+
+    // Paging
+    implementation 'android.arch.paging:runtime:1.0.1'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
 }

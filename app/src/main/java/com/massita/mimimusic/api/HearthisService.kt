@@ -10,7 +10,7 @@ interface HearthisService {
     @GET("/feed/")
     fun getFeed(@Query("type") type: String,
                 @Query("page") page: Int,
-                @Query("count") count: Int) : Call<Feed>
+                @Query("count") count: Int) : Call<List<Feed>>
 
 
 }
