@@ -1,7 +1,8 @@
-package com.massita.mimimusic
+package com.massita.mimimusic.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.massita.mimimusic.R
 
 class MainActivity : AppCompatActivity() {
 

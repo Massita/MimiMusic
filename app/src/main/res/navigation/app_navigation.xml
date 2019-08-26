@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@id/topListFragment">
+
+    <fragment
+        android:id="@+id/topListFragment"
+        android:name="com.massita.mimimusic.ui.fragments.TopListFragment"
+        android:label="fragment_top_list"
+        tools:layout="@layout/fragment_top_list" />
+</navigation>
