@@ -2,11 +2,7 @@ package com.massita.mimimusic.datasource
 
 import androidx.paging.ItemKeyedDataSource
 import com.massita.mimimusic.api.HearthisService
-import com.massita.mimimusic.vo.Feed
 import com.massita.mimimusic.vo.User
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class TopListDataSource(private val service: HearthisService) : ItemKeyedDataSource<Int, User>() {
 
@@ -16,37 +12,26 @@ class TopListDataSource(private val service: HearthisService) : ItemKeyedDataSou
         params: LoadInitialParams<Int>,
         callback: LoadInitialCallback<User>
     ) {
-        service.getFeed("popular", pageNumber, params.requestedLoadSize).enqueue(
-            object : Callback<List<Feed>> {
-                override fun onFailure(call: Call<List<Feed>>, t: Throwable) {
-                    // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
 
-                override fun onResponse(call: Call<List<Feed>>, response: Response<List<Feed>>) {
-                    pageNumber++
-                    val resp = response.body()!!.map { it.user }
-                    callback.onResult(resp)
-                }
-
-            }
-        )
+        service.getFeed("popular", pageNumber, params.requestedLoadSize)
+            .map { response ->
+                response.map { service.getArtistDetail(it.user.permalink).blockingGet() }
+            }.subscribe(
+            { feed ->
+                pageNumber++
+                callback.onResult(feed)},
+            {  })
     }
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<User>) {
-        service.getFeed("popular", pageNumber, params.requestedLoadSize).enqueue(
-            object : Callback<List<Feed>> {
-                override fun onFailure(call: Call<List<Feed>>, t: Throwable) {
-                    // TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-
-                override fun onResponse(call: Call<List<Feed>>, response: Response<List<Feed>>) {
+        service.getFeed("popular", pageNumber, params.requestedLoadSize)
+            .map { response ->
+                response.map { service.getArtistDetail(it.user.permalink).blockingGet() }
+            }.subscribe(
+                { feed ->
                     pageNumber++
-                    val resp = response.body()!!.map { it.user }
-                    callback.onResult(resp)
-                }
-
-            }
-        )
+                    callback.onResult(feed)},
+                {  })
     }
 
     override fun loadBefore(params: LoadParams<Int>, callback: LoadCallback<User>) {

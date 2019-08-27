@@ -41,7 +41,6 @@ class TopListAdapter : PagedListAdapter<User, TopListAdapter.ViewHolder> (diffCa
 
         fun bind(user: User) {
             itemView.userName.text = user.username
-            itemView.userDescription.text = user.description
             itemView.trackCount.text = itemView.context.getString(R.string.track_count, user.trackCount)
 
             Picasso.get()
