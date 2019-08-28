@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Mimi Music</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="avatar">Avatar</string>
+    <string name="track_count">Tracks: %d</string>
+    <string name="track_length">(%s)</string>
+    <string name="play_pause_button">Play/Pause Button</string>
+    <string name="nothing_selected">Nothing selected…</string>
+    <string name="loading">Loading…</string>
+    <string name="playing">Playing %s</string>
+    <string name="paused">%s paused.</string>
 </resources>
