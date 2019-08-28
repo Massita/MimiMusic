@@ -9,5 +9,21 @@
         android:id="@+id/topListFragment"
         android:name="com.massita.mimimusic.ui.fragments.TopListFragment"
         android:label="fragment_top_list"
-        tools:layout="@layout/fragment_top_list" />
+        tools:layout="@layout/fragment_top_list" >
+        <action
+            android:id="@+id/action_topListFragment_to_artistDetailFragment"
+            app:destination="@id/artistDetailFragment" />
+        <action
+            android:id="@+id/action_topListFragment_to_artistDetailFragment2"
+            app:destination="@id/artistDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/artistDetailFragment"
+        android:name="com.massita.mimimusic.ui.fragments.ArtistDetailFragment"
+        android:label="fragment_artist_detail"
+        tools:layout="@layout/fragment_artist_detail" >
+        <argument
+            android:name="selectedUser"
+            app:argType="string" />
+    </fragment>
 </navigation>
