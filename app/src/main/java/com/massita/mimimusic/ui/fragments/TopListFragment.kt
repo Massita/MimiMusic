@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.massita.mimimusic.R
 import com.massita.mimimusic.ui.adapters.TopListAdapter
@@ -40,6 +41,8 @@ class TopListFragment : Fragment() {
 
         topListRecyclerView.apply {
             val mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            val dividerItemDecoration = DividerItemDecoration(context, mLayoutManager.orientation)
+            addItemDecoration(dividerItemDecoration)
             layoutManager = mLayoutManager
             setHasFixedSize(true)
             adapter = topListAdapter

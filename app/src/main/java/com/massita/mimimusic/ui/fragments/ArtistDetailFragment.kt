@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.massita.mimimusic.R
 import com.massita.mimimusic.ui.adapters.TrackListAdapter
@@ -42,6 +43,8 @@ class ArtistDetailFragment : Fragment() {
 
         trackRecyclerView.apply {
             val mLayoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+            val dividerItemDecoration = DividerItemDecoration(context, mLayoutManager.orientation)
+            addItemDecoration(dividerItemDecoration)
             layoutManager = mLayoutManager
             setHasFixedSize(true)
             adapter = trackListAdapter
