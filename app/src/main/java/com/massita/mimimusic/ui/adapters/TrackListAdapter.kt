@@ -7,11 +7,13 @@ import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.massita.mimimusic.R
+import com.massita.mimimusic.viewmodel.SongViewModel
 import com.massita.mimimusic.vo.Song
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.track_list_item.view.*
+import java.util.concurrent.TimeUnit
 
-class TrackListAdapter : PagedListAdapter<Song, TrackListAdapter.ViewHolder>(diffCallback) {
+class TrackListAdapter(val player: SongViewModel) : PagedListAdapter<Song, TrackListAdapter.ViewHolder>(diffCallback) {
 
     companion object {
         private val diffCallback = object : DiffUtil.ItemCallback<Song>() {
@@ -33,21 +35,29 @@ class TrackListAdapter : PagedListAdapter<Song, TrackListAdapter.ViewHolder>(dif
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val song = getItem(position)
         song?.let {
-            holder.bind(it)
+            holder.bind(it, player)
         }
     }
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(song: Song) {
+        fun bind(song: Song, player: SongViewModel) {
             itemView.title.text = song.title
             itemView.genre.text = song.genre
-            itemView.duration.text = itemView.context.getString(R.string.track_length, song.duration)
+            val timeInSecs = song.duration.toLong()
+            val formattedTime = String.format("%02d:%02d",
+                TimeUnit.SECONDS.toMinutes(timeInSecs),
+                timeInSecs - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(timeInSecs)));
+            itemView.duration.text = itemView.context.getString(R.string.track_length, formattedTime)
 
             Picasso.get()
                 .load(song.artworkUrl)
                 .fit()
                 .into(itemView.artwork)
+
+            itemView.setOnClickListener {
+                player.setSelectedSong(song)
+            }
         }
 
     }

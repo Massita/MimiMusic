@@ -1,8 +1,6 @@
 package com.massita.mimimusic.di
 
-import com.massita.mimimusic.BuildConfig
 import com.massita.mimimusic.api.HearthisService
-import okhttp3.OkHttpClient
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

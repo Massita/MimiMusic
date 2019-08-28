@@ -1,7 +1,7 @@
 package com.massita.mimimusic.di
 
 import com.massita.mimimusic.datasource.TopListDataSource
-import com.massita.mimimusic.datasource.TrackListDataSource
+import com.massita.mimimusic.viewmodel.SongViewModel
 import com.massita.mimimusic.viewmodel.TopListViewModel
 import com.massita.mimimusic.viewmodel.TrackListViewModel
 import org.koin.android.viewmodel.dsl.viewModel
@@ -13,5 +13,6 @@ val feedModule = module {
 
     viewModel { TopListViewModel() }
     viewModel { (permalink: String) -> TrackListViewModel(permalink) }
+    viewModel { SongViewModel() }
 
 }
